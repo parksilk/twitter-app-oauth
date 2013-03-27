@@ -11,6 +11,7 @@ require 'rubygems'
 require 'uri'
 require 'pathname'
 require 'oauth'
+require 'oauth/consumer'
 require 'pg'
 require 'active_record'
 require 'logger'
@@ -32,10 +33,10 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
+CONSUMER_KEY = 'TWanBFjz40N5VOBHt5NR6w'
+CONSUMER_SECRET = '05emKIrlWHRgSRlvrN7IHQIdsfrPUGRrDPnmcCaGvq0'
 
 Twitter.configure do |config|
-  config.consumer_key = 'TWanBFjz40N5VOBHt5NR6w'
-  config.consumer_secret = '05emKIrlWHRgSRlvrN7IHQIdsfrPUGRrDPnmcCaGvq0'
-  config.oauth_token = '24279924-TifV3rNXqdimzfQe8RocqW26E2KPTPOyZ3jIsHxas'
-  config.oauth_token_secret = 'jnXRBiutfMiDCoBeSwEAjyO6BchPhdbYUqlGCAWMYTI'
+  config.consumer_key = CONSUMER_KEY
+  config.consumer_secret = CONSUMER_SECRET
 end
