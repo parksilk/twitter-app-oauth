@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+
+  <title></title>
+</head>
+<body>
+  <style type="text/css">
+    .container {
+      margin: 20px auto;
+      width: 600px;
+      padding: 0px 20px 20px 20px;
+      border: 1px solid blue;
+    }
+
+  </style>
+  <%= yield %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="/javascript/application.js"></script>
+</body>
+</html>
