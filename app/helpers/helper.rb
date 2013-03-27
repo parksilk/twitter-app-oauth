@@ -18,8 +18,21 @@ helpers do
   end
 
   def client
-  	Twitter::Client.new(
+		@client = Twitter::Client.new(
       :oauth_token => session[:token],
       :oauth_token_secret => session[:secret])
+
+		puts "*" * 100
+		puts @client.user.screen_name
+
+		user = User.find_or_create_by_username(
+			:username => @client.user.screen_name,
+      :token => session[:token],
+      :secret => session[:secret])
+
+		puts "*" * 100
+		puts user
+
+		@client
   end
 end
