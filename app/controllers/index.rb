@@ -15,10 +15,14 @@ end
 post '/tweet' do
   text = params[:text]
 
-  client.update(text)
-  user = User.find_by_token(session[:token])
+  # gets the current user that made the post
+  user = get_user
 
-  Tweet.create(:text => text, :user_id => user.id)
+  # stores the user's tweet in our database
+  tweet = user.store_tweet(text, user.id)
+
+  # queue up the tweet to be posted
+  TweetWorker.perform_async(user.id, tweet.id)
 
   erb :tweet
 end

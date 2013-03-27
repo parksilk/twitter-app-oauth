@@ -17,22 +17,9 @@ helpers do
   	session.delete(:request_token)
   end
 
-  def client
-		@client = Twitter::Client.new(
-      :oauth_token => session[:token],
-      :oauth_token_secret => session[:secret])
-
-		puts "*" * 100
-		puts @client.user.screen_name
-
-		user = User.find_or_create_by_username(
-			:username => @client.user.screen_name,
+  def get_user
+		User.find_or_create_by_token(
       :token => session[:token],
       :secret => session[:secret])
-
-		puts "*" * 100
-		puts user
-
-		@client
   end
 end
