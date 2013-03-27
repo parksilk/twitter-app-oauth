@@ -11,10 +11,12 @@ $(document).ready(function() {
       method: 'post',
       data: data,
       dataType: "html"
-    }).done(function(server_data) {
-      $("#loader").hide();
-      $('#message').text("Success");
-      $('input').val('');
+    }).done(function(job_id) {
+      // $("#loader").hide();
+      // alert(job_id);
+      window.location = '/tweet';
+      // $('#message').text("Success! Your job ID is: " + job_id);
+      // $('input').val('');
     });
   });
 });

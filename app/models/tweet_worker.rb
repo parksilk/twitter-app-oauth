@@ -9,7 +9,7 @@ class TweetWorker
 	  client = create_client(user)
 		
 		# set user's username
-		user.update_attributes(:username => @client.user.screen_name) unless user.username
+		user.update_attributes(:username => client.user.screen_name) unless user.username
 
 	  # actually make API call
 	  client.update(tweet.text)
