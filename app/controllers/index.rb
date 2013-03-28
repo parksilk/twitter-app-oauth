@@ -30,6 +30,6 @@ post '/tweet' do
 end
 
 get '/status/:job_id' do
-  @status = job_is_complete(params[:job_id].to_s)
+  @status = job_is_complete(params[:job_id])
   erb :status
 end

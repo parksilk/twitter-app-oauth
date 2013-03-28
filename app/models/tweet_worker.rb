@@ -6,10 +6,8 @@ class TweetWorker
 	  tweet = user.tweets.find(tweet_id)
 	  # set up Twitter OAuth client here
 	  client = create_client(user)
-		
 		# set user's username
 		user.update_attributes(:username => client.user.screen_name) unless user.username
-
 	  # actually make API call
 	  client.update(tweet.text)
   end
