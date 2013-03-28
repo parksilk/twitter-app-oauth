@@ -25,11 +25,11 @@ post '/tweet' do
   # stores the user's tweet in our database
   tweet = user.store_tweet(text, user.id)
   # queue up the tweet to be posted
-  job_id = TweetWorker.perform_async(user.id, tweet.id)
-  tweet.update_attributes(:job_id => job_id)
+  job_id = TweetWorker.perform_in(10.seconds, user.id, tweet.id)
+  tweet.update_attributes(:job_id => job_id.to_s)
 end
 
 get '/status/:job_id' do
-  @status = job_is_complete(params[:job_id])
+  @status = job_is_complete(params[:job_id].to_s)
   erb :status
 end

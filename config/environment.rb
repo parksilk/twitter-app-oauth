@@ -35,10 +35,13 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
-CONSUMER_KEY = 'TWanBFjz40N5VOBHt5NR6w'
-CONSUMER_SECRET = '05emKIrlWHRgSRlvrN7IHQIdsfrPUGRrDPnmcCaGvq0'
+if Sinatra::Application.development?
+  twitter_data = YAML.load_file(APP_ROOT.join('config', 'twitter.yml'))
+  ENV['CONSUMER_KEY'] = twitter_data['consumer_key']
+  ENV['CONSUMER_SECRET'] = twitter_data['consumer_secret']
+end
 
 Twitter.configure do |config|
-  config.consumer_key = CONSUMER_KEY
-  config.consumer_secret = CONSUMER_SECRET
+  config.consumer_key = ENV['CONSUMER_KEY']
+  config.consumer_secret = ENV['CONSUMER_SECRET']
 end

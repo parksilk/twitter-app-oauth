@@ -4,7 +4,6 @@ class TweetWorker
   def perform(user_id, tweet_id)
 	  user  = User.find(user_id)
 	  tweet = user.tweets.find(tweet_id)
-
 	  # set up Twitter OAuth client here
 	  client = create_client(user)
 		

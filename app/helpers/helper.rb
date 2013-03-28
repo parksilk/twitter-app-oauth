@@ -25,7 +25,12 @@ helpers do
 
 	def job_is_complete(jid)
 	  waiting = Sidekiq::Queue.new
+	  p "%" * 50
+	  p waiting.each { |thing| puts thing }
 	  working = Sidekiq::Workers.new
+	  p "%" * 50
+	  p working.inspect
+	  p working.first
 	  return false if waiting.find { |job| job.jid == jid }
 	  return false if working.find { |worker, info| info["payload"]["jid"] == jid }
 	  true
