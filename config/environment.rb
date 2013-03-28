@@ -41,6 +41,9 @@ if Sinatra::Application.development?
   ENV['CONSUMER_SECRET'] = twitter_data['consumer_secret']
 end
 
+CONSUMER_KEY = ENV['CONSUMER_KEY']
+CONSUMER_SECRET = ENV['CONSUMER_SECRET']
+
 Twitter.configure do |config|
   config.consumer_key = ENV['CONSUMER_KEY']
   config.consumer_secret = ENV['CONSUMER_SECRET']
